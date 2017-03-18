@@ -1,0 +1,24 @@
+#!/usr/bin/expect -f
+
+# server address is the first and only argument
+# (but you can see how to add username and password as additional args if you want!)
+
+# sample: ./vpn_connect usa.vpnprovider.com
+
+set SERVER [lindex $argv 0]
+set USERNAME "me@example.com"
+set PASSWORD "p4ssw0rd"
+
+spawn openvpn "$SERVER"
+
+sleep 1
+
+expect "Enter Auth Username: "
+send "$USERNAME\r"
+
+sleep 1
+
+expect "Enter Auth Password: "
+send "$PASSWORD\r"
+
+interact
